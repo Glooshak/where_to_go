@@ -19,3 +19,20 @@ class Place(models.Model):
         blank=False,
         unique=True,
     )
+
+
+class Image(models.Model):
+
+    title = models.CharField(
+        max_length=50,
+        blank=False,
+        db_index=False,
+    )
+
+    position = models.IntegerField(
+        blank=False,
+    )
+
+    picture = models.ImageField(
+        blank=False,
+    )
