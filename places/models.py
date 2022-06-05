@@ -10,7 +10,7 @@ class Place(models.Model):
     )
 
     description_short = models.CharField(
-        max_length=100,
+        max_length=300,
         blank=False,
     )
 
@@ -18,26 +18,19 @@ class Place(models.Model):
         blank=False,
     )
 
-    coordinates = models.JSONField(
-        blank=False,
-        unique=True,
-    )
-
-    place_id = models.CharField(
-        max_length=15,
+    lng = models.FloatField(
         blank=False,
     )
 
-    @property
-    def lng(self) -> float:
-        return float(self.coordinates['lng'])
-
-    @property
-    def lat(self) -> float:
-        return float(self.coordinates['lat'])
+    lat = models.FloatField(
+        blank=False,
+    )
 
     def __str__(self) -> str:
         return self.title
+
+    class Meta:
+        ordering = 'id',
 
 
 class Image(models.Model):
@@ -46,14 +39,16 @@ class Image(models.Model):
         Place, on_delete=models.CASCADE
     )
 
-    title = models.CharField(
+    picture_name = models.CharField(
         max_length=50,
         blank=False,
         db_index=False,
     )
 
-    position = models.IntegerField(
+    position = models.PositiveIntegerField(
         blank=False,
+        default=0,
+        null=False,
     )
 
     picture = models.ImageField(
@@ -61,4 +56,7 @@ class Image(models.Model):
     )
 
     def __str__(self) -> str:
-        return self.title
+        return self.picture_name
+
+    class Meta:
+        ordering = ['position']

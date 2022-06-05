@@ -18,7 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from places.views import fetch_place_title
+from places.views import fetch_place
 
 from .views import show_main_page
 
@@ -26,5 +26,5 @@ from .views import show_main_page
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', show_main_page),
-    path('places/<int:place_id>/', fetch_place_title, name='places'),
+    path('places/<int:place_id>/', fetch_place, name='places'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

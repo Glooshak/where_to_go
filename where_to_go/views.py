@@ -16,7 +16,7 @@ def show_main_page(
         "features": []
     }
     for place in Place.objects.all():
-        place_id = place.place_id
+        place_id = place.id
         geo_json['features'].append(
             {
                 "type": "Feature",

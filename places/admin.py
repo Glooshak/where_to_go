@@ -1,3 +1,7 @@
+from adminsortable2.admin import (
+    SortableAdminMixin,
+    SortableInlineAdminMixin,
+)
 from django.contrib import admin
 from django.utils.html import format_html
 
@@ -7,16 +11,18 @@ from .models import (
 )
 
 
-class ImageInLine(admin.TabularInline):
+class ImageInLine(SortableInlineAdminMixin, admin.TabularInline):
     model = Image
     readonly_fields = 'get_preview',
+
+    MAX_PICTURE_HEIGHT = 200
 
     def get_preview(self: 'ImageInLine', image: Image) -> str:
         picture = image.picture
         url, height, width = picture.url, picture.height, picture.width
-        if height > 200:
+        if height > self.MAX_PICTURE_HEIGHT:
             old_aspect_ratio = height / width
-            height = 200
+            height = self.MAX_PICTURE_HEIGHT
             width = height / old_aspect_ratio
             new_aspect_ratio = height / width
             assert new_aspect_ratio == old_aspect_ratio, 'Aspect ration was not preserved!'
@@ -27,13 +33,13 @@ class ImageInLine(admin.TabularInline):
 
 
 @admin.register(Place)
-class PlaceAdmin(admin.ModelAdmin):
+class PlaceAdmin(SortableAdminMixin, admin.ModelAdmin):
 
     list_display = 'title', 'description_short',
     inlines = ImageInLine,
 
 
 @admin.register(Image)
-class ImageAdmin(admin.ModelAdmin):
+class ImageAdmin(SortableAdminMixin, admin.ModelAdmin):
 
-    list_display = 'position', 'title',
+    list_display = 'position', 'picture_name',
