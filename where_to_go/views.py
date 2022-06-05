@@ -3,6 +3,7 @@ from django.http import (
     HttpResponse,
 )
 from django.template import loader
+from django.urls import reverse
 
 from places.models import Place
 
@@ -13,10 +14,6 @@ def show_main_page(
     geo_json = {
         "type": "FeatureCollection",
         "features": []
-    }
-    detail_url = {
-        'moscow_legends': 'static/places/moscow_legends.json',
-        'roofs24': 'static/places/roofs24.json',
     }
     for place in Place.objects.all():
         place_id = place.place_id
@@ -30,7 +27,7 @@ def show_main_page(
                 "properties": {
                     "title": place.title,
                     "placeId": place_id,
-                    "detailsUrl": detail_url[place_id]
+                    "detailsUrl": reverse('places', kwargs={'place_id': place.id})
                 }
             }
         )

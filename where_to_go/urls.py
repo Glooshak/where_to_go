@@ -26,5 +26,5 @@ from .views import show_main_page
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', show_main_page),
-    path('places/<int:place_id>/', fetch_place_title),
+    path('places/<int:place_id>/', fetch_place_title, name='places'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
