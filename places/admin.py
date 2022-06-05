@@ -6,10 +6,15 @@ from .models import (
 )
 
 
+class ImageInLine(admin.TabularInline):
+    model = Image
+
+
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
 
     list_display = 'title', 'description_short',
+    inlines = ImageInLine,
 
 
 @admin.register(Image)
