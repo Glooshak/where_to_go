@@ -18,6 +18,14 @@
 # Демо
 ![docs/devman.gif](docs/devman.gif)
 
+# Ссылка на развернутый сервис
+http://glooshak.pythonanywhere.com
+
+Логин пароль для входа в админку:
+
+`login: admin`
+
+`password: 1`
 # Запуск проекта
 - Перед установкой убедитесь, что у вас есть python версии 3.10 и выше, а также инструмент менеджмента питоновских пакетов poetry (https://python-poetry.org/docs/)
 - Клонируйте репозиторий к себе.
