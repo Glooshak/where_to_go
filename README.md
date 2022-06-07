@@ -31,11 +31,16 @@ http://glooshak.pythonanywhere.com
 - Клонируйте репозиторий к себе.
 - Зайдите в директорию с проектом `cd where_to_go`
 - В корневой директории проекта создайте файл `.env` и заполните его по примеру файла `.env-example`
-- Выполните список комманд, представленный ниже.
+- Выполните список команд, представленный ниже.
 - `poetry install --no-dev --no-root` установка зависимостей
 - `poetry shell` активация виртуального окружения
 - `python manage.py migrate` - запуск миграция
 - `python manage.py createsuperuser` - создания учетки для админки
 - `python manage.py runserver` - запуск приложения на дев сервере
-## Добавление контента
+# Добавление контента
 Добавить контент можно через админку - воспользуйтесь учеткой, которую вы получили на шаге создания `superuser`.
+
+Также новые места можно загружать с помощью Django команды `python manage.py load_place [url]`.
+Ссылка может быть двух видов:
+- https://github.com/devmanorg/where-to-go-places/blob/master/places/%D0%9B%D0%BE%D0%BF%D0%B0%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D0%BA.json
+- https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/places/%D0%9B%D0%BE%D0%BF%D0%B0%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D0%BA.json
