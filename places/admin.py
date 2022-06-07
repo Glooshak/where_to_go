@@ -24,8 +24,6 @@ class ImageInLine(SortableInlineAdminMixin, admin.TabularInline):
             old_aspect_ratio = height / width
             height = self.MAX_PICTURE_HEIGHT
             width = height / old_aspect_ratio
-            new_aspect_ratio = height / width
-            assert new_aspect_ratio == old_aspect_ratio, 'Aspect ration was not preserved!'
 
         return format_html(
             f'<img src="{url}" width="{width}" height={height} />'
