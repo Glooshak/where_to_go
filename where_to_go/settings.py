@@ -126,7 +126,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = os.environ['STATIC_URL']
-STATIC_ROOT = os.environ['STATIC_ROOT']
 
 MEDIA_ROOT = os.environ['MEDIA_ROOT']
 MEDIA_URL = os.environ['MEDIA_URL']
