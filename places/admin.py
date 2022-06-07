@@ -42,4 +42,4 @@ class PlaceAdmin(SortableAdminMixin, admin.ModelAdmin):
 @admin.register(Image)
 class ImageAdmin(SortableAdminMixin, admin.ModelAdmin):
 
-    list_display = 'position', 'picture_name',
+    list_display = 'position', 'place',

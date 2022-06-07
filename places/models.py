@@ -8,6 +8,7 @@ class Place(models.Model):
         max_length=50,
         blank=False,
         db_index=False,
+        unique=True,
     )
 
     description_short = models.CharField(
@@ -32,18 +33,14 @@ class Place(models.Model):
 
     class Meta:
         ordering = 'id',
+        unique_together = 'lng', 'lat',
 
 
 class Image(models.Model):
 
     place = models.ForeignKey(
-        Place, on_delete=models.CASCADE
-    )
-
-    picture_name = models.CharField(
-        max_length=50,
-        blank=False,
-        db_index=False,
+        Place,
+        on_delete=models.CASCADE,
     )
 
     position = models.PositiveIntegerField(
@@ -57,7 +54,7 @@ class Image(models.Model):
     )
 
     def __str__(self) -> str:
-        return self.picture_name
+        return self.place.title
 
     class Meta:
         ordering = ['position']
